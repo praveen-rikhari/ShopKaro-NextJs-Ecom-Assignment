@@ -4,6 +4,7 @@
     gap: 20px;
     padding: 20px;
 }
+
 .filter-panel {
     padding: 20px;
     background-color: #f4f4f4;
@@ -19,6 +20,36 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    display: grid;
+    animation: spinner 3s infinite;
+    margin: 0 auto;
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    grid-area: 1/1;
+    border: 12px solid;
+    border-radius: 50%;
+    border-color: #333333 #333333 #0000 #0000;
+    mix-blend-mode: darken;
+    animation: spinner 1.5s infinite linear;
+}
+
+.spinner::after {
+    border-color: #0000 #0000 #ddd #ddd;
+    animation-direction: reverse;
+}
+
+@keyframes spinner {
+    100% {
+        transform: rotate(1turn);
+    }
 }
 
 .product-card {
@@ -53,18 +84,29 @@
     color: #333;
 }
 
-.rating-box {
-    display: flex;
+.rating-box,
+.tag {
+    display: inline-flex;
+    gap: 10px;
     align-items: center;
-    justify-content: flex-start;
-    font-size: 16px;
-    color: #333;
+    padding: 5px 10px;
+    margin: 10px 0;
+    background-color: #000;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
 }
 
-.rating-box svg {
-    margin-right: 5px;
+.rating-box {
+    font-size: 15px;
+    padding: 3px 10px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #fcc947;
 }
 
+.card-mid,
 .card-footer {
     display: flex;
     justify-content: space-between;
@@ -90,13 +132,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.add-to-cart svg {
-    margin-right: 8px;
+    gap: 8px;
+    width: 50%;
 }
 
 .add-to-cart:hover {
     background-color: #e55005;
 }
-

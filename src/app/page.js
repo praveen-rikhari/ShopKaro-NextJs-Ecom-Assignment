@@ -17,7 +17,7 @@ export default function Home() {
         console.log(response);
         setProducts(response.data);
       } catch (error) {
-        setError('Failed to load products');
+        setError('Failed to load products.........');
       } finally {
         setLoading(false);
       }
@@ -30,22 +30,25 @@ export default function Home() {
     console.log('Added to cart:', product);
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
-
   return (
     <>
       <main className="main-content">
         <FilterPanel />
         <div className="product-list">
           {
-            products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={handleAddToCart}
-              />
-            ))
+            loading ? (
+              <p className='spinner'></p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              products.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={handleAddToCart}
+                />
+              ))
+            )
           }
         </div>
       </main>

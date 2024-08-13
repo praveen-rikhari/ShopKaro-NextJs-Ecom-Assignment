@@ -1,5 +1,6 @@
-import { FaCartPlus } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
+import {
+    FaCartPlus, FaStar, FaTags
+} from "react-icons/fa";
 
 const ProductCard = ({ product, onAddToCart }) => {
     return (
@@ -14,18 +15,28 @@ const ProductCard = ({ product, onAddToCart }) => {
                 {product.title.slice(0, 30)}
             </h5>
 
-            <div className="rating-box">
-                <FaStar
-                    size={20}
-                    color="#fcc947"
-                /> {product.rating.rate}
+            <div className="card-mid">
+                <div className="rating-box">
+                    <FaStar
+                        size={20}
+                        color="#fcc947"
+                    /> {product.rating.rate}
+                </div>
+                <div className="tag">
+                    <FaTags size={18} />
+                    {product.category.toUpperCase()}
+                </div>
             </div>
 
             <div className="card-footer">
                 <span className="product-price">
                     $ {product.price}
                 </span>
-                <button className="add-to-cart" onClick={() => onAddToCart(product.title)}>
+                
+                <button
+                    className="add-to-cart"
+                    onClick={() => onAddToCart(product.title)}
+                >
                     <FaCartPlus size={20} /> Add to Cart
                 </button>
             </div>
