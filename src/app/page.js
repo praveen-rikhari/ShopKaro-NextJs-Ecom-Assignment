@@ -34,6 +34,10 @@ export default function Home() {
     fetchProducts();
   }, []);
 
+  const clearSearch = () => {
+    setSearchQuery('');
+  }
+
   const handleAddToCart = (product) => {
     console.log('Added to cart:', product);
   };
@@ -89,6 +93,16 @@ export default function Home() {
             value={searchQuery}
             onChange={handleSearch}
           />
+          {
+            searchQuery && (
+              <FaXmark
+                size={25}
+                className="icon"
+                onClick={clearSearch}
+                style={{ cursor: 'pointer' }}
+              />
+            )
+          }
         </div>
 
         <div className="sort-dropdown">
@@ -104,6 +118,7 @@ export default function Home() {
 
 
       <main className={`main-content ${!filterVisible ? 'no-filter-panel' : ''}`}>
+
         {
           filterVisible && <FilterPanel />
         }
