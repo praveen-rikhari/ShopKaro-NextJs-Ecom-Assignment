@@ -109,14 +109,19 @@ export default function Home() {
         }
         <div className="product-list">
           {
-            
+            loading ? (
+              <p className="spinner"></p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
               filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}
                   onAddToCart={handleAddToCart}
                 />
-           
+              ))
+            )
           }
         </div>
       </main>
