@@ -21,7 +21,6 @@ export default function Home() {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('https://fakestoreapi.com/products');
-        console.log(response);
         setProducts(response.data);
         setFilteredProducts(response.data);
       } catch (error) {
@@ -36,6 +35,7 @@ export default function Home() {
 
   const clearSearch = () => {
     setSearchQuery('');
+    setFilteredProducts(products);
   }
 
   const handleAddToCart = (product) => {
@@ -65,8 +65,7 @@ export default function Home() {
 
     if (option === "az") {
       sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
-    }
-    else if (option === "za") {
+    } else if (option === "za") {
       sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
     }
 
@@ -114,11 +113,7 @@ export default function Home() {
         </div>
       </div>
 
-
-
-
       <main className={`main-content ${!filterVisible ? 'no-filter-panel' : ''}`}>
-
         {
           filterVisible && <FilterPanel />
         }
@@ -129,13 +124,17 @@ export default function Home() {
             ) : error ? (
               <p>{error}</p>
             ) : (
-              filteredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onAddToCart={handleAddToCart}
-                />
-              ))
+              filteredProducts.length > 0 ? (
+                filteredProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onAddToCart={handleAddToCart}
+                  />
+                ))
+              ) : (
+                <h1>No products found</h1>
+              )
             )
           }
         </div>
