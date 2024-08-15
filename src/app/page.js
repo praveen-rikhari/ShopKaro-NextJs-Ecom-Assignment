@@ -16,6 +16,7 @@ export default function Home() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("");
+  
   const [filters, setFilters] = useState({
     category: [],
     price: 1000,
@@ -47,7 +48,7 @@ export default function Home() {
 
     // Filter by Category
     if (filters.category.length > 0) {
-      curr_filtered = curr_filtered.filter(product => 
+      curr_filtered = curr_filtered.filter(product =>
         filters.category.includes(product.category.toLowerCase())
       );
     }
@@ -61,7 +62,7 @@ export default function Home() {
         filters.rating.includes(Math.floor(product.rating.rate).toString())
       );
     }
-    
+
 
     setFilteredProducts(curr_filtered);
   };
@@ -98,18 +99,18 @@ export default function Home() {
 
     // Sorting A-Z & Z-A
     if (option === "az") {
-        sortedProducts.sort((pro1, pro2) => pro1.title.localeCompare(pro2.title));
-    } 
+      sortedProducts.sort((pro1, pro2) => pro1.title.localeCompare(pro2.title));
+    }
     else if (option === "za") {
-        sortedProducts.sort((pro1, pro2) => pro2.title.localeCompare(pro1.title));
-    } 
-    
+      sortedProducts.sort((pro1, pro2) => pro2.title.localeCompare(pro1.title));
+    }
+
     // Sorting by Price Low to High & High to Low 
     else if (option === "lth") {
-        sortedProducts.sort((pro1, pro2) => pro1.price - pro2.price);
-    } 
+      sortedProducts.sort((pro1, pro2) => pro1.price - pro2.price);
+    }
     else if (option === "htl") {
-        sortedProducts.sort((pro1, pro2) => pro2.price - pro1.price);
+      sortedProducts.sort((pro1, pro2) => pro2.price - pro1.price);
     }
 
     setFilteredProducts(sortedProducts);
@@ -129,12 +130,14 @@ export default function Home() {
 
         <div className="search-box">
           <FaSearch size={25} className="icon" />
+
           <input
             type="text"
             placeholder="Search products..."
             value={searchQuery}
             onChange={handleSearch}
           />
+
           {
             searchQuery && (
               <FaXmark
@@ -164,9 +167,12 @@ export default function Home() {
             <FilterPanel
               filters={filters}
               setFilters={setFilters}
+              filterVisible={filterVisible}
+              setFilterVisible={setFilterVisible}
             />
           )
         }
+
         <div className="product-list">
           {
             loading ? (
