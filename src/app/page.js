@@ -63,14 +63,25 @@ export default function Home() {
 
     let sortedProducts = [...filteredProducts];
 
+    // Sorting A-Z & Z-A
     if (option === "az") {
-      sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (option === "za") {
-      sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
+        sortedProducts.sort((pro1, pro2) => pro1.title.localeCompare(pro2.title));
+    } 
+    else if (option === "za") {
+        sortedProducts.sort((pro1, pro2) => pro2.title.localeCompare(pro1.title));
+    } 
+    
+    // Sorting by Price Low to High & High to Low 
+    else if (option === "lth") {
+        sortedProducts.sort((pro1, pro2) => pro1.price - pro2.price);
+    } 
+    else if (option === "htl") {
+        sortedProducts.sort((pro1, pro2) => pro2.price - pro1.price);
     }
 
     setFilteredProducts(sortedProducts);
-  };
+};
+
 
   return (
     <>
@@ -109,6 +120,8 @@ export default function Home() {
             <option value="">Sort by</option>
             <option value="az">A-Z</option>
             <option value="za">Z-A</option>
+            <option value="lth">Price: Low to High</option>
+            <option value="htl">Price: High to Low</option>
           </select>
         </div>
       </div>
