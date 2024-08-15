@@ -16,6 +16,11 @@ export default function Home() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("");
+  const [filters, setFilters] = useState({
+    category: [],
+    price: 1000,
+    rating: []
+  });
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,10 +38,38 @@ export default function Home() {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    applyFilters();
+  }, [filters]);
+
+  const applyFilters = () => {
+    let curr_filtered = products;
+
+    // Filter by Category
+    if (filters.category.length > 0) {
+      curr_filtered = curr_filtered.filter(product => 
+        filters.category.includes(product.category.toLowerCase())
+      );
+    }
+
+    // Filter by Price Range
+    curr_filtered = curr_filtered.filter(product => product.price <= filters.price);
+
+    // Filter by Ratings
+    if (filters.rating.length > 0) {
+      curr_filtered = curr_filtered.filter(product =>
+        filters.rating.includes(Math.floor(product.rating.rate).toString())
+      );
+    }
+    
+
+    setFilteredProducts(curr_filtered);
+  };
+
   const clearSearch = () => {
     setSearchQuery('');
     setFilteredProducts(products);
-  }
+  };
 
   const handleAddToCart = (product) => {
     console.log('Added to cart:', product);
@@ -80,8 +113,7 @@ export default function Home() {
     }
 
     setFilteredProducts(sortedProducts);
-};
-
+  };
 
   return (
     <>
@@ -128,7 +160,12 @@ export default function Home() {
 
       <main className={`main-content ${!filterVisible ? 'no-filter-panel' : ''}`}>
         {
-          filterVisible && <FilterPanel />
+          filterVisible && (
+            <FilterPanel
+              filters={filters}
+              setFilters={setFilters}
+            />
+          )
         }
         <div className="product-list">
           {
