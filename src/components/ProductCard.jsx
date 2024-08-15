@@ -1,12 +1,13 @@
 import {
     FaCartPlus, FaStar, FaTags
 } from "react-icons/fa";
-import Image from "next/image";
+
+import "./ProductCard.css";
 
 const ProductCard = ({ product, onAddToCart }) => {
     return (
         <div className="product-card">
-            <Image
+            <img
                 src={product.image}
                 alt={product.title}
                 className="product-image"
@@ -33,7 +34,7 @@ const ProductCard = ({ product, onAddToCart }) => {
                 <span className="product-price">
                     $ {product.price}
                 </span>
-                
+
                 <button
                     className="add-to-cart"
                     onClick={() => onAddToCart(product.title)}
