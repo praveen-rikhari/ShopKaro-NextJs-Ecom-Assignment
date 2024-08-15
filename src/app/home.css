@@ -68,17 +68,57 @@
     grid-template-columns: 1fr;
 }
 
+/* Filter file css */
 .filter-panel {
     padding: 20px;
     background-color: #f8f8f8;
     border-right: 1px solid #ddd;
 }
 
-.filter-option {
-    margin-bottom: 15px;
-    font-size: 16px;
+.filter-section {
+    margin-bottom: 20px;
 }
 
+.filter-section h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.filter-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.filter-section hr {
+    margin: 20px 0;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.clear-filters {
+    background-color: #e55005;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    margin-top: 20px;
+}
+
+.clear-filters:hover {
+    background-color: #cc4805;
+}
+
+/* product list styling */
 .product-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
