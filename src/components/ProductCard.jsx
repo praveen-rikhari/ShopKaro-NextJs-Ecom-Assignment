@@ -1,11 +1,12 @@
 import {
     FaCartPlus, FaStar, FaTags
 } from "react-icons/fa";
+import Image from "next/image";
 
 const ProductCard = ({ product, onAddToCart }) => {
     return (
         <div className="product-card">
-            <img
+            <Image
                 src={product.image}
                 alt={product.title}
                 className="product-image"

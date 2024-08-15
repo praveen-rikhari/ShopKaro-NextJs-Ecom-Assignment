@@ -2,7 +2,7 @@ const FilterPanel = ({ filters, setFilters }) => {
 
     const handleCategoryChange = (e) => {
         const value = e.target.value;
-        
+
         setFilters(allFilters => {
             if (allFilters.category.includes(value)) {
                 return {
@@ -85,7 +85,7 @@ const FilterPanel = ({ filters, setFilters }) => {
                         checked={filters.category.includes("men's clothing")}
                         onChange={handleCategoryChange}
                     />
-                    Men's Clothing
+                    Men&apos;s Clothing
                 </label>
                 <label>
                     <input
@@ -95,7 +95,7 @@ const FilterPanel = ({ filters, setFilters }) => {
                         checked={filters.category.includes("women's clothing")}
                         onChange={handleCategoryChange}
                     />
-                    Women's Clothing
+                    Women&apos;s Clothing
                 </label>
                 <hr />
             </div>
