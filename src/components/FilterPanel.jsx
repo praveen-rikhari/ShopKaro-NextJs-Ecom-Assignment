@@ -1,4 +1,5 @@
 import { FaXmark } from "react-icons/fa6";
+import toast from "react-hot-toast";
 import './FilterPanel.css';
 
 const FilterPanel = ({ filters, setFilters, filterVisible, setFilterVisible }) => {
@@ -56,6 +57,12 @@ const FilterPanel = ({ filters, setFilters, filterVisible, setFilterVisible }) =
             price: 1000,
             rating: []
         });
+        toast.success(
+            "Filter Cleared",
+            {
+                duration: 2000,
+            }
+        );
     };
 
     return (

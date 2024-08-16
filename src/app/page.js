@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import { PiListMagnifyingGlassFill } from "react-icons/pi";
 import { FaSearch } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import { toast } from 'react-hot-toast'
 import "./home.css";
 
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("");
-  
+
   const [filters, setFilters] = useState({
     category: [],
     price: 1000,
@@ -74,6 +75,12 @@ export default function Home() {
 
   const handleAddToCart = (product) => {
     console.log('Added to cart:', product);
+    toast.success(
+      "Product added to cart 🛒",
+      {
+        duration: 4000,
+      }
+    );
   };
 
   const toggleFilterVisibility = () => {
