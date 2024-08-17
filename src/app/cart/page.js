@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
+  const [showDiscountInfo, setShowDiscountInfo] = useState(false);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -35,6 +36,7 @@ export default function Cart() {
     const updatedCart = cart.filter(item => item.id !== productId);
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+
     toast.success("Product removed from cart.", {
       duration: '3000'
     })
@@ -47,6 +49,25 @@ export default function Cart() {
       return total + price * quantity;
     }, 0);
   };
+
+  const calculateDiscount = (subtotal) => {
+    if (subtotal > 1000) {
+      return 0.4 * subtotal;
+    }
+    else if (subtotal > 500) {
+      return 0.25 * subtotal;
+    }
+    else if (subtotal > 200) {
+      return 0.1 * subtotal;
+    }
+    else {
+      return 0;
+    }
+  };
+
+  const subtotal = calculateTotalPrice();
+  const discount = calculateDiscount(subtotal);
+  const totalAfterDiscount = subtotal - discount;
 
   return (
     <div className="cart-page">
@@ -125,9 +146,48 @@ export default function Cart() {
 
 
             <div className="checkout-box">
-              <h2 className="total-price">
-                Sub Total: $ {calculateTotalPrice().toFixed(2)}
-              </h2>
+              <span
+                className="terms"
+                onClick={() => setShowDiscountInfo(!showDiscountInfo)}
+              >
+                {showDiscountInfo ? 'Hide' : 'Show'} Discount Info
+              </span>
+
+              {
+                showDiscountInfo && (
+                  <div className="discount-info">
+                    <h4>Discount terms & condition:</h4>
+                    <ul>
+                      <li>
+                        10% discount for orders above $ 200.
+                      </li>
+                      <li>
+                        25% discount for orders above $ 500.
+                      </li>
+                      <li>
+                        40% discount for orders above $ 1000.
+                      </li>
+                    </ul>
+                  </div>
+                )
+              }
+              
+              <h3 className="subtotal-price">
+                Sub Total: <span>$ {subtotal.toFixed(2)}</span>
+              </h3>
+
+              {
+                discount > 0 && (
+                  <h3 className="discount-price">
+                    Discount: <span>-$ {discount.toFixed(2)}</span>
+                  </h3>
+                )
+              }
+
+              <h3 className="total-price">
+                Grand Total: <span>$ {totalAfterDiscount.toFixed(2)}</span>
+              </h3>
+
               <button className="checkout-btn">Check out & Pay</button>
             </div>
           </div>
