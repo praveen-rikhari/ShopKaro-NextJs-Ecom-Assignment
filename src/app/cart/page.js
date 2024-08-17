@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import "./Cart.css";
 
-export default function page() { // Updated component name
+export default function Cart() {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -21,46 +21,56 @@ export default function page() { // Updated component name
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  if (!Array.isArray(cart)) {
-    return <p>Error loading cart. Please try again later.</p>;
-  }
-
   return (
     <div className="cart-page">
       <h1 className="cart-title">Your Cart</h1>
       {
         cart.length === 0 ? (
-          <p className="empty-cart">Your cart is empty</p>
+          <p className="empty-cart">
+            Your cart is empty
+          </p>
         ) : (
           <div className="cart-grid">
-            {cart.map((product, id) => (
-              <div key={id} className="cart-product">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="product-image"
-                />
-                <div className="product-info">
-                  <h5 className="product-title">
-                    {product.title ? product.title.slice(0, 30) : 'No Title'}
-                  </h5>
-                  <div className="product-details">
-                    <div className="rating-price">
-                      <div className="rating-box">
-                        <FaStar size={20} color="#fcc947" />
-                        {product.rating ? product.rating.rate : 'N/A'}
+            {
+              cart.map((product, id) => (
+                <div key={id} className="cart-product">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="product-image"
+                  />
+                  <div className="product-info">
+                    <h5 className="product-title">
+                      {product.title.slice(0, 30)}
+                    </h5>
+
+                    <div className="product-details">
+                      <div className="rating-price">
+                        <div className="rating-box">
+                          <FaStar
+                            size={20}
+                            color="#fcc947"
+                          />
+                          {product.rating.rate}
+                        </div>
+
+                        <span className="product-price">
+                          $ {product.price}
+                        </span>
                       </div>
-                      <span className="product-price">
-                        $ {product.price || 'N/A'}
-                      </span>
+
+                      <button
+                        className="remove-btn"
+                        onClick={() => removeFromCart(product.id)}
+                      >
+                        Remove
+                      </button>
+                      
                     </div>
-                    <button className="remove-btn" onClick={() => removeFromCart(product.id)}>
-                      Remove
-                    </button>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
         )
       }
