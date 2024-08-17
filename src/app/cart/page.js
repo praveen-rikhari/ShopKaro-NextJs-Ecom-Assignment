@@ -4,6 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import { MdRemoveShoppingCart } from "react-icons/md";
 import "./Cart.css";
 import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
@@ -83,7 +84,16 @@ export default function Cart() {
 
       {
         cart.length === 0 ? (
-          <p className="empty-cart">Your cart is empty</p>
+          <center>
+            <h2 className="empty-cart">Your cart is empty 😞</h2>
+            <Image
+              src='/emptycart.png'
+              width={600}
+              height={500}
+              alt='Empty cart'
+              className='emptycart-image'
+            />
+          </center>
         ) : (
           <div className="cart-container">
             {
@@ -171,7 +181,7 @@ export default function Cart() {
                   </div>
                 )
               }
-              
+
               <h3 className="subtotal-price">
                 Sub Total: <span>$ {subtotal.toFixed(2)}</span>
               </h3>
