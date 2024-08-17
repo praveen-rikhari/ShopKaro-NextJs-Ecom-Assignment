@@ -37,7 +37,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
                 <button
                     className="add-to-cart"
-                    onClick={() => onAddToCart(product.title)}
+                    onClick={() => onAddToCart(product)}
                 >
                     <FaCartPlus size={20} /> Add to Cart
                 </button>

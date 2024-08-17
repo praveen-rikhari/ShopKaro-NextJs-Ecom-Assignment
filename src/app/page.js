@@ -74,14 +74,24 @@ export default function Home() {
   };
 
   const handleAddToCart = (product) => {
-    console.log('Added to cart:', product);
+    // Get the current cart from localStorage or initialize an empty array if not present
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Add the full product object to the cart array
+    cart.push(product);
+
+    // Save the updated cart array back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Notify the user
     toast.success(
       "Product added to cart 🛒",
       {
-        duration: 4000,
+        duration: 4000
       }
     );
   };
+
 
   const toggleFilterVisibility = () => {
     setFilterVisible(!filterVisible);
