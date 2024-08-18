@@ -142,14 +142,15 @@ export default function Home() {
   return (
     <>
       <div className="controls">
-        <div className="filter-button">
-          <button onClick={toggleFilterVisibility}>
-            <PiListMagnifyingGlassFill size={30} className="icon" />
-            {
-              filterVisible ? "Hide Filters" : "Show Filters"
-            }
-          </button>
-        </div>
+        {
+          !filterVisible &&
+          <div className="filter-button">
+            <button onClick={toggleFilterVisibility}>
+              <PiListMagnifyingGlassFill size={30} className="icon" />
+              Filters
+            </button>
+          </div>
+        }
 
         <div className="search-box">
           <FaSearch size={25} className="icon" />
