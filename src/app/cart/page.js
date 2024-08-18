@@ -85,8 +85,8 @@ export default function Cart() {
 
       {
         cart.length === 0 ? (
-          <center>
-            <h2 className="empty-cart">Your cart is empty 😞</h2>
+          <div classname="empty-page">
+            <h5 className="empty-cart">Your cart is empty 😞</h5>
             <Image
               src='/emptycart.png'
               width={600}
@@ -94,62 +94,66 @@ export default function Cart() {
               alt='Empty cart'
               className='emptycart-image'
             />
-          </center>
+          </div>
         ) : (
           <div className="cart-container">
             {
               cart.map((product) => (
                 <div key={product.id} className="cart-product">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="cart-image"
-                  />
 
-                  <div className="cart-info">
-                    <h5 className="product-title">
-                      {product.title.slice(0, 30)}
-                    </h5>
+                  <div className="p1">
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="cart-image"
+                      />
 
-                    <div className="rating-box">
-                      <FaStar size={20} color="#fcc947" />
-                      {product.rating.rate}
+                    <div className="cart-info">
+                      <h5 className="product-title">
+                        {product.title.slice(0, 30)}
+                      </h5>
+
+                      <div className="rating-box">
+                        <FaStar size={20} color="#fcc947" />
+                        {product.rating.rate}
+                      </div>
+
+                      <div>
+                        <button
+                          className="remove-btn"
+                          onClick={() => removeFromCart(product.id)}
+                        >
+                          Remove <MdRemoveShoppingCart size={15} />
+                        </button>
+                      </div>
                     </div>
-
-                    <div>
+                  </div>
+                  <div className="p2">
+                    <div className="quantity-controls">
                       <button
-                        className="remove-btn"
-                        onClick={() => removeFromCart(product.id)}
+                        className="quantity-btn"
+                        onClick={() => updateQuantity(product.id, -1)}
                       >
-                        Remove <MdRemoveShoppingCart size={15} />
+                        -
+                      </button>
+
+                      <span className="quantity-display">
+                        {product.quantity || 1}
+                      </span>
+
+                      <button
+                        className="quantity-btn"
+                        onClick={() => updateQuantity(product.id, 1)}
+                      >
+                        +
                       </button>
                     </div>
-                  </div>
 
-                  <div className="quantity-controls">
-                    <button
-                      className="quantity-btn"
-                      onClick={() => updateQuantity(product.id, -1)}
-                    >
-                      -
-                    </button>
-
-                    <span className="quantity-display">
-                      {product.quantity || 1}
-                    </span>
-
-                    <button
-                      className="quantity-btn"
-                      onClick={() => updateQuantity(product.id, 1)}
-                    >
-                      +
-                    </button>
-                  </div>
-
-                  <div className="price">
-                    <span className="cart-price">
-                      $ {(product.price * (product.quantity || 1)).toFixed(2)}
-                    </span>
+                    <div className="price">
+                      <span className="cart-price">
+                        $ {(product.price * (product.quantity || 1)).toFixed(2)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))
