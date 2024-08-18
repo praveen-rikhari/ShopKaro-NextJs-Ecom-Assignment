@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# shopKaro
 
-## Getting Started
+`shopKaro` is an e-commerce shopping cart application built with Next.js and styled using plain CSS. The application features a comprehensive set of functionalities, including responsive design, search and sort capabilities, and a fully interactive shopping cart. It uses the [FakestoreAPI](https://fakestoreapi.com) to render product data and provides a seamless shopping experience with local storage support.
+See application [LIVE](https://shop-karo-sable.vercel.app)
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Responsive Design**: Fully responsive UI that adapts to various screen sizes.
+- **Product Search and Sorting**: Search bar and sort dropdown for sorting products alphabetically (A-Z, Z-A) and by price (low-to-high, high-to-low).
+- **Filter Panel**: Filter products by category, star ratings, and price range using a slider.
+- **Shopping Cart**: Add products to the cart, view them on a dedicated cart page, adjust quantities, remove items, and see real-time price updates.
+- **Discount Feature**: Displays a discount when the subtotal of all products exceeds a specified amount.
+- **Checkout Process**: A checkout button that redirects to a confirmation payment page.
+- **Local Storage**: Added products are saved in local storage to persist through page reloads.
+- **Notifications**: React Hot Toast is used for in-app notifications.
+- **API Integration**: Axios is used for fetching product data from FakestoreAPI.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js**: For server-side rendering and React-based application framework.
+- **CSS**: For styling the application.
+- **LocalStorage**: For persisting cart data across page reloads.
+- **React Hot Toast**: For displaying notifications.
+- **Axios**: For making API requests to FakestoreAPI.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+1. Clone the repository and install dependencies and start server:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/praveen-rikhari/shopkaro.git
+   cd shopkaro
+   npm install
+   npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. The application will be running on http://localhost:3000.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Usage
+- **Home Page**: View all products, search, and apply filters.
+- **Product Page**: Add products to the cart and view details.
+- **Cart Page**: Manage items in your cart, adjust quantities, and proceed to checkout.
+- **Checkout Page**: Confirm your purchase and process payments.
