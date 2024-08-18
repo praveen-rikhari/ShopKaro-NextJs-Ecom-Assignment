@@ -125,13 +125,13 @@
     border-bottom: 1px solid #ccc;
     padding: 10px;
     gap: 100px;
-  }
-  
-  .checkout-box h3 span {
+}
+
+.checkout-box h3 span {
     font-size: 1rem;
     font-weight: 500;
-  }
-  
+}
+
 
 .checkout-btn {
     margin-top: 15px;
@@ -179,4 +179,8 @@
 
 .discount-info li {
     margin-bottom: 5px;
+}
+
+.redirect {
+    text-decoration: none;
 }

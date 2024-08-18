@@ -5,6 +5,7 @@ import { MdRemoveShoppingCart } from "react-icons/md";
 import "./Cart.css";
 import toast from 'react-hot-toast';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
@@ -160,7 +161,7 @@ export default function Cart() {
                 className="terms"
                 onClick={() => setShowDiscountInfo(!showDiscountInfo)}
               >
-                {showDiscountInfo ? 'Hide' : 'Show'} Discount Info
+                *{showDiscountInfo ? 'Hide' : 'Show'} Discount Info
               </span>
 
               {
@@ -198,7 +199,11 @@ export default function Cart() {
                 Grand Total: <span>$ {totalAfterDiscount.toFixed(2)}</span>
               </h3>
 
-              <button className="checkout-btn">Check out & Pay</button>
+              <Link href="/payment-confirm" className='redirect'>
+                <button className="checkout-btn">
+                  Check out & Pay
+                </button>
+              </Link>
             </div>
           </div>
         )
